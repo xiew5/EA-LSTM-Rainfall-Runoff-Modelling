@@ -12,8 +12,6 @@ experiment_name: experimentNSE30tun0hs128
 
 # place to store run directory (if empty runs are stored in code_dir/runs/)
 
-#run_dir: /dbfs/mnt/lab/unrestricted/larissa.vickers@environment-agency.gov.uk/camels-gb/runs
-
 run_dir: ./runs
 
 
