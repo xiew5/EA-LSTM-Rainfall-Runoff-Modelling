@@ -218,3 +218,23 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project-local environments and editor/OS metadata
+.DS_Store
+**/.DS_Store
+.venv/
+**/.venv/
+FinalProject.code-workspace
+
+# Licensed/local hydrological inputs (see DATA.md)
+NATIONAL_input/
+NATIONAL_HOST22_input/
+NW_REGION_CAMELS_input/
+SE_REGION_CAMELS_input/
+Q90/*.csv
+
+# Training artefacts. Publish selected final checkpoints separately.
+runs/
+
+# Local scratch/evaluation area
+evaluation/

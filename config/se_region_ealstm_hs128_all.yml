@@ -1,0 +1,93 @@
+experiment_name: se_region_ealstm_hs128_all
+run_dir: ./runs
+train_basin_file: ./basins/se_region_train_list.txt
+validation_basin_file: ./basins/se_region_validation_list.txt
+test_basin_file: ./basins/se_region_test_list.txt
+train_start_date: 01/10/1990
+train_end_date: 30/09/2015
+validation_start_date: 01/10/2015
+validation_end_date: 31/12/2017
+test_start_date: 01/01/2018
+test_end_date: 31/12/2020
+device: mps
+seed: 1
+validate_every: 5
+metrics:
+- NSE
+- KGE
+model: ealstm
+head: regression
+output_activation: linear
+hidden_size: 128
+initial_forget_bias: 3
+output_dropout: 0.4
+statics_embedding:
+  type: fc
+  hiddens:
+  - 30
+  - 20
+  - 64
+  activation: tanh
+  dropout: 0.0
+dynamics_embedding:
+  type: fc
+  hiddens:
+  - 30
+  - 20
+  - 64
+  activation: tanh
+  dropout: 0.0
+optimizer: Adam
+loss: NSE
+learning_rate:
+  0: 0.001
+  10: 0.0005
+  20: 0.0001
+batch_size: 256
+epochs: 30
+clip_gradient_norm: 1
+predict_last_n: 1
+seq_length: 365
+num_workers: 8
+log_interval: 10
+log_tensorboard: true
+log_n_figures: 1
+save_weights_every: 1
+dataset: camels_gb
+data_dir: ./SE_REGION_CAMELS_input
+cache_validation_data: true
+target_variables:
+- discharge_spec
+dynamic_inputs:
+- precipitation
+- peti
+static_attributes:
+- Area_km2
+- PE_6190_mm
+- Runoff_mm
+- SAAR_6190_mm
+- HostClass1
+- HostClass2
+- HostClass3
+- HostClass4
+- HostClass5
+- HostClass6
+- HostClass7
+- HostClass8
+- HostClass9
+- HostClass10
+- HostClass11
+- HostClass13
+- HostClass14
+- HostClass16
+- HostClass17
+- HostClass18
+- HostClass19
+- HostClass20
+- HostClass21
+- HostClass23
+- HostClass24
+- HostClass25
+- HostClass30
+custom_normalization: null
+use_basin_id_encoding: false

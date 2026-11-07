@@ -1,0 +1,84 @@
+experiment_name: experimentNSE30hs128_no_hostclass
+run_dir: ./runs
+train_basin_file: ./basins/train_list.txt
+validation_basin_file: ./basins/validation_list.txt
+test_basin_file: ./basins/test_list.txt
+train_start_date: 01/10/1990
+train_end_date: 31/12/2020
+validation_start_date: 01/10/1990
+validation_end_date: 31/12/2020
+test_start_date: 01/10/1990
+test_end_date: 31/12/2020
+device: mps
+seed: 1
+validate_every: 5
+metrics:
+- NSE
+- KGE
+model: ealstm
+head: regression
+output_activation: linear
+hidden_size: 128
+initial_forget_bias: 3
+output_dropout: 0.4
+statics_embedding:
+  type: fc
+  hiddens:
+  - 30
+  - 20
+  - 64
+  activation: tanh
+  dropout: 0.0
+dynamics_embedding:
+  type: fc
+  hiddens:
+  - 30
+  - 20
+  - 64
+  activation: tanh
+  dropout: 0.0
+shared_mtslstm: false
+transfer_mtslstm_states:
+  h: identity
+  c: identity
+ode_method: euler
+ode_num_unfolds: 4
+ode_random_freq_lower_bound: 6D
+transformer_nlayers: 4
+transformer_positional_encoding_type: sum
+transformer_dim_feedforward: 32
+transformer_positional_dropout: 0.0
+transformer_dropout: 0
+transformer_nheads: 4
+optimizer: Adam
+loss: NSE
+learning_rate:
+  0: 0.001
+  10: 0.0005
+  20: 0.0001
+batch_size: 256
+epochs: 30
+clip_gradient_norm: 1
+predict_last_n: 1
+seq_length: 365
+num_workers: 8
+log_interval: 10
+log_tensorboard: true
+log_n_figures: 1
+save_weights_every: 1
+dataset: camels_gb
+data_dir: ./NATIONAL_input
+cache_validation_data: true
+target_variables:
+- discharge_spec
+dynamic_inputs:
+- precipitation
+- peti
+static_attributes:
+- Area_km2
+- PE_6190_mm
+- Runoff_mm
+- SAAR_6190_mm
+- BFIHOST
+custom_normalization: null
+use_basin_id_encoding: false

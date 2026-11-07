@@ -1,0 +1,113 @@
+batch_size: 256
+cache_validation_data: true
+clip_gradient_norm: 1
+custom_normalization: null
+data_dir: ./NATIONAL_input
+dataset: camels_gb
+device: mps
+dynamic_inputs:
+- precipitation
+- peti
+dynamics_embedding:
+  type: fc
+  hiddens:
+  - 30
+  - 20
+  - 64
+  activation: tanh
+  dropout: 0.0
+epochs: 30
+experiment_name: national_ealstm_hs128_all_lowlr
+head: regression
+hidden_size: 128
+initial_forget_bias: 3
+learning_rate:
+  0: 0.0007
+  15: 0.0003
+  20: 0.0001
+log_interval: 10
+log_n_figures: 1
+log_tensorboard: true
+loss: NSE
+metrics:
+- NSE
+- KGE
+model: ealstm
+num_workers: 8
+ode_method: euler
+ode_num_unfolds: 4
+ode_random_freq_lower_bound: 6D
+optimizer: Adam
+output_activation: linear
+output_dropout: 0.4
+package_version: 1.13.0
+predict_last_n: 1
+save_weights_every: 1
+seed: 1
+seq_length: 365
+shared_mtslstm: false
+static_attributes:
+- Area_km2
+- PE_6190_mm
+- Runoff_mm
+- SAAR_6190_mm
+- BFIHOST
+- HostClass1
+- HostClass2
+- HostClass3
+- HostClass4
+- HostClass5
+- HostClass6
+- HostClass7
+- HostClass8
+- HostClass9
+- HostClass10
+- HostClass11
+- HostClass12
+- HostClass13
+- HostClass14
+- HostClass15
+- HostClass16
+- HostClass17
+- HostClass18
+- HostClass19
+- HostClass20
+- HostClass21
+- HostClass22
+- HostClass23
+- HostClass24
+- HostClass25
+- HostClass26
+- HostClass27
+- HostClass29
+- HostClass30
+statics_embedding:
+  type: fc
+  hiddens:
+  - 30
+  - 20
+  - 64
+  activation: tanh
+  dropout: 0.0
+target_variables:
+- discharge_spec
+test_basin_file: ./basins/test_list.txt
+test_end_date: 31/12/2020
+test_start_date: 01/01/2018
+train_basin_file: ./basins/basin_list.txt
+train_end_date: 30/09/2015
+train_start_date: 01/10/1990
+transfer_mtslstm_states:
+  h: identity
+  c: identity
+transformer_dim_feedforward: 32
+transformer_dropout: 0
+transformer_nheads: 4
+transformer_nlayers: 4
+transformer_positional_dropout: 0.0
+transformer_positional_encoding_type: sum
+use_basin_id_encoding: false
+validate_every: 5
+validation_basin_file: ./basins/basin_list.txt
+validation_end_date: 31/12/2017
+validation_start_date: 01/10/2015
